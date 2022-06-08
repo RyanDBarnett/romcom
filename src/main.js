@@ -1,19 +1,60 @@
-// Create variables targetting the relevant DOM elements here 👇
+// DOM elements variables
 
+var coverImage = document.querySelector('.cover-image');
+var coverTitle = document.querySelector('.cover-title');
+var tagline1 = document.querySelector('.tagline-1');
+var tagline2 = document.querySelector('.tagline-2');
+var randomCoverBtn = document.querySelector('.random-cover-button');
 
-// We've provided a few variables below
-var savedCovers = [
-  new Cover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
-];
+// State variables
+
+var savedCovers = [];
 var currentCover;
 
-// Add your event listeners here 👇
+// Initialization
 
+setCurrentCover(createCover());
+updateDOMCover();
 
-// Create your event handlers and other functions here 👇
+// Event listeners
 
+randomCoverBtn.addEventListener('click', createRandomCover);
 
-// We've provided one function to get you started
+// Event Listener functions
+
+function createRandomCover() {
+  saveCover(currentCover);
+  setCurrentCover(createCover());
+  updateDOMCover();
+}
+
+// Helper functions
+
+function createCover() {
+  var coverImgSrc = covers[getRandomIndex(covers)];
+  var title = titles[getRandomIndex(titles)];
+  var descriptor1 = descriptors[getRandomIndex(descriptors)];
+  var descriptor2 = descriptors[getRandomIndex(descriptors)];
+  return new Cover(coverImgSrc, title, descriptor1, descriptor2);
+}
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
+}
+
+function saveCover(cover) {
+  savedCovers.push(cover)
+}
+
+function setCurrentCover(cover) {
+  currentCover = cover;
+}
+
+// DOM functions
+
+function updateDOMCover() {
+  coverImage.src = currentCover.cover;
+  coverTitle.innerText = currentCover.title;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
 }
