@@ -1,10 +1,18 @@
 // DOM elements variables
 
+var homeView = document.querySelector('.home-view');
+var formView = document.querySelector('.form-view');
+var savedView = document.querySelector('.saved-view');
+
 var coverImage = document.querySelector('.cover-image');
 var coverTitle = document.querySelector('.cover-title');
 var tagline1 = document.querySelector('.tagline-1');
 var tagline2 = document.querySelector('.tagline-2');
+var homeBtn = document.querySelector('.home-button');
 var randomCoverBtn = document.querySelector('.random-cover-button');
+var saveCoverBtn = document.querySelector('.save-cover-button');
+var savedCoversBtn = document.querySelector('.view-saved-button');
+var makeNewCoverBtn = document.querySelector('.make-new-button');
 
 // State variables
 
@@ -18,14 +26,44 @@ updateDOMCover();
 
 // Event listeners
 
+homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
-
+savedCoversBtn.addEventListener('click', viewSavedCovers);
+makeNewCoverBtn.addEventListener('click', viewForm);
 // Event Listener functions
+
+function viewHome() {
+  homeBtn.classList.add('hidden');
+  formView.classList.add('hidden');
+  savedView.classList.add('hidden');
+
+  randomCoverBtn.classList.remove('hidden');
+  saveCoverBtn.classList.remove('hidden');
+  homeView.classList.remove('hidden');
+}
 
 function createRandomCover() {
   saveCover(currentCover);
   setCurrentCover(createCover());
   updateDOMCover();
+}
+
+function viewForm() {
+  homeView.classList.add('hidden');
+  randomCoverBtn.classList.add('hidden');
+  saveCoverBtn.classList.add('hidden');
+
+  homeBtn.classList.remove('hidden');
+  formView.classList.remove('hidden');
+}
+
+function viewSavedCovers() {
+  randomCoverBtn.classList.add('hidden');
+  saveCoverBtn.classList.add('hidden');
+  homeView.classList.add('hidden');
+
+  savedView.classList.remove('hidden');
+  homeBtn.classList.remove('hidden');
 }
 
 // Helper functions
