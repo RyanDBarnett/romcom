@@ -33,6 +33,7 @@ makeNewCoverBtn.addEventListener('click', viewForm);
 // Event Listener functions
 
 function viewHome() {
+  homeBtn.classList.add('hidden');
   formView.classList.add('hidden');
   savedView.classList.add('hidden');
 
