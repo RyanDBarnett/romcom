@@ -5,6 +5,7 @@ var coverTitle = document.querySelector('.cover-title');
 var tagline1 = document.querySelector('.tagline-1');
 var tagline2 = document.querySelector('.tagline-2');
 var randomCoverBtn = document.querySelector('.random-cover-button');
+var saveCoverBtn = document.querySelector('.save-cover-button');
 var makeNewBtn = document.querySelector('.make-new-button');
 
 // State variables
@@ -32,6 +33,8 @@ function createRandomCover() {
 function viewForm() {
   document.querySelector('.home-view').classList.add('hidden');
   document.querySelector('.form-view').classList.remove('hidden');
+  randomCoverBtn.classList.add('hidden');
+  saveCoverBtn.classList.add('hidden');
 }
 
 // Helper functions
