@@ -37,6 +37,8 @@ function viewHome() {
   formView.classList.add('hidden');
   savedView.classList.add('hidden');
 
+  randomCoverBtn.classList.remove('hidden');
+  saveCoverBtn.classList.remove('hidden');
   homeView.classList.remove('hidden');
 }
 
