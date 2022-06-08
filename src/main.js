@@ -42,6 +42,8 @@ function viewForm() {
 }
 
 function viewSavedCovers() {
+  randomCoverBtn.classList.add('hidden');
+  saveCoverBtn.classList.add('hidden');
   document.querySelector('.home-view').classList.add('hidden');
   document.querySelector('.saved-view').classList.remove('hidden');
 }
