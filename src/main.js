@@ -33,9 +33,9 @@ makeNewCoverBtn.addEventListener('click', viewForm);
 // Event Listener functions
 
 function viewHome() {
-  homeBtn.classList.add('hidden');
-  formView.classList.add('hidden');
-  savedView.classList.add('hidden');
+  hide(homeBtn);
+  hide(formView);
+  hide(savedView);
 
   randomCoverBtn.classList.remove('hidden');
   saveCoverBtn.classList.remove('hidden');
@@ -49,18 +49,18 @@ function createRandomCover() {
 }
 
 function viewForm() {
-  homeView.classList.add('hidden');
-  randomCoverBtn.classList.add('hidden');
-  saveCoverBtn.classList.add('hidden');
+  hide(homeView);
+  hide(randomCoverBtn);
+  hide(saveCoverBtn);
 
   homeBtn.classList.remove('hidden');
   formView.classList.remove('hidden');
 }
 
 function viewSavedCovers() {
-  randomCoverBtn.classList.add('hidden');
-  saveCoverBtn.classList.add('hidden');
-  homeView.classList.add('hidden');
+  hide(homeView);
+  hide(randomCoverBtn);
+  hide(saveCoverBtn);
 
   savedView.classList.remove('hidden');
   homeBtn.classList.remove('hidden');
@@ -89,6 +89,10 @@ function setCurrentCover(cover) {
 }
 
 // DOM functions
+
+function hide(element) {
+  element.classList.add('hidden');
+}
 
 function updateDOMCover() {
   coverImage.src = currentCover.cover;
