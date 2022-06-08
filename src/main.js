@@ -5,6 +5,7 @@ var coverTitle = document.querySelector('.cover-title');
 var tagline1 = document.querySelector('.tagline-1');
 var tagline2 = document.querySelector('.tagline-2');
 var randomCoverBtn = document.querySelector('.random-cover-button');
+var makeNewBtn = document.querySelector('.make-new-button');
 
 // State variables
 
@@ -19,13 +20,18 @@ updateDOMCover();
 // Event listeners
 
 randomCoverBtn.addEventListener('click', createRandomCover);
-
+makeNewBtn.addEventListener('click', viewForm);
 // Event Listener functions
 
 function createRandomCover() {
   saveCover(currentCover);
   setCurrentCover(createCover());
   updateDOMCover();
+}
+
+function viewForm() {
+  document.querySelector('.home-view').classList.add('hidden');
+  document.querySelector('.form-view').classList.remove('hidden');
 }
 
 // Helper functions
