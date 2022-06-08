@@ -37,9 +37,9 @@ function viewHome() {
   hide(formView);
   hide(savedView);
 
-  randomCoverBtn.classList.remove('hidden');
-  saveCoverBtn.classList.remove('hidden');
-  homeView.classList.remove('hidden');
+  show(homeView);
+  show(randomCoverBtn);
+  show(saveCoverBtn);
 }
 
 function createRandomCover() {
@@ -53,8 +53,8 @@ function viewForm() {
   hide(randomCoverBtn);
   hide(saveCoverBtn);
 
-  homeBtn.classList.remove('hidden');
-  formView.classList.remove('hidden');
+  show(homeBtn);
+  show(formView);
 }
 
 function viewSavedCovers() {
@@ -62,8 +62,8 @@ function viewSavedCovers() {
   hide(randomCoverBtn);
   hide(saveCoverBtn);
 
-  savedView.classList.remove('hidden');
-  homeBtn.classList.remove('hidden');
+  show(homeBtn);
+  show(savedView);
 }
 
 // Helper functions
@@ -92,6 +92,10 @@ function setCurrentCover(cover) {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
 }
 
 function updateDOMCover() {
