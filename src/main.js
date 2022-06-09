@@ -21,7 +21,7 @@ var currentCover;
 
 // Initialization
 
-setCurrentCover(createCover());
+setCurrentCover(createCover(getRandomCoverData()));
 updateDOMCover();
 
 // Event listeners
@@ -30,6 +30,7 @@ homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
+
 // Event Listener functions
 
 function viewHome() {
@@ -40,7 +41,7 @@ function viewHome() {
 
 function createRandomCover() {
   saveCover(currentCover);
-  setCurrentCover(createCover());
+  setCurrentCover(createCover(getRandomCoverData()));
   updateDOMCover();
 }
 
@@ -58,12 +59,12 @@ function viewSavedCovers() {
 
 // Helper functions
 
-function createCover() {
-  var coverImgSrc = covers[getRandomIndex(covers)];
-  var title = titles[getRandomIndex(titles)];
-  var descriptor1 = descriptors[getRandomIndex(descriptors)];
-  var descriptor2 = descriptors[getRandomIndex(descriptors)];
-  return new Cover(coverImgSrc, title, descriptor1, descriptor2);
+function createCover(coverData) {
+  return new Cover(...coverData);
+}
+
+function getRandomCoverData() {
+  return [covers, titles, descriptors, descriptors].map(array => array[getRandomIndex(array)]);
 }
 
 function getRandomIndex(array) {
@@ -108,7 +109,6 @@ function showHomeBtnHideOthers(showHome) {
     show(saveCoverBtn);
   }
 }
-
 
 function updateDOMCover() {
   coverImage.src = currentCover.cover;
