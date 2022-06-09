@@ -36,7 +36,9 @@ createNewBookBtn.addEventListener('click', createNewBook);
 // Event Listener functions
 
 function createNewBook(event) {
-  var userFormInput = getNewBookInput();
+  var userInput = getNewBookInput();
+
+  saveUserInput(userInput);
 
   event.preventDefault();
 }
@@ -81,6 +83,12 @@ function getRandomIndex(array) {
 
 function saveCover(cover) {
   savedCovers.push(cover);
+}
+
+function saveUserInput(newBook) {
+  [covers, titles, descriptors, descriptors].forEach((rawArray, i) => {
+    rawArray.push(newBook[i]);
+  })
 }
 
 function setCurrentCover(cover) {
