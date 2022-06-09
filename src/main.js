@@ -50,6 +50,7 @@ function createRandomCover() {
 
 function viewForm() {
   hide(homeView);
+  hide(savedView);
   hide(randomCoverBtn);
   hide(saveCoverBtn);
 
@@ -59,6 +60,7 @@ function viewForm() {
 
 function viewSavedCovers() {
   hide(homeView);
+  hide(formView);
   hide(randomCoverBtn);
   hide(saveCoverBtn);
 
