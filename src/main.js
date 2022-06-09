@@ -87,10 +87,12 @@ function setCurrentCover(cover) {
 // DOM functions
 
 function changeView(viewToDisplay) {
-  var views = [homeView, formView, savedView];
-
-  views.forEach(view => hide(view));
+  hideViews();
   show(viewToDisplay);
+}
+
+function hideViews() {
+  [homeView, formView, savedView].forEach(view => hide(view));
 }
 
 function hide(element) {
