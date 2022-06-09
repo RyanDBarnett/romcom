@@ -36,11 +36,8 @@ createNewBookBtn.addEventListener('click', createNewBook);
 // Event Listener functions
 
 function createNewBook(event) {
-  var userCover = document.querySelector('.user-cover').value;
-  var userTitle = document.querySelector('.user-title').value;
-  var userDescriptor1 = document.querySelector('.user-desc1').value;
-  var userDescriptor2 = document.querySelector('.user-desc2').value;
-  
+  var userFormInput = getNewBookInput();
+
   event.preventDefault();
 }
 
@@ -83,7 +80,7 @@ function getRandomIndex(array) {
 }
 
 function saveCover(cover) {
-  savedCovers.push(cover)
+  savedCovers.push(cover);
 }
 
 function setCurrentCover(cover) {
@@ -103,6 +100,11 @@ function hideViews() {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function getNewBookInput() {
+  var formClasses = ['.user-cover', '.user-title', '.user-desc1', '.user-desc2'];
+  return formClasses.map(c => document.querySelector(c).value);
 }
 
 function show(element) {
