@@ -40,6 +40,8 @@ function createNewBook(event) {
 
   saveUserInput(userInput);
 
+  var newCover = createCover(userInput);
+
   event.preventDefault();
 }
 
