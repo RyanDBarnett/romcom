@@ -13,6 +13,7 @@ var randomCoverBtn = document.querySelector('.random-cover-button');
 var saveCoverBtn = document.querySelector('.save-cover-button');
 var savedCoversBtn = document.querySelector('.view-saved-button');
 var makeNewCoverBtn = document.querySelector('.make-new-button');
+var createNewBookBtn = document.querySelector('.create-new-book-button');
 
 // State variables
 
@@ -30,12 +31,21 @@ homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
+createNewBookBtn.addEventListener('click', createNewBook);
 
 // Event Listener functions
 
+function createNewBook(event) {
+  var userInput = getNewBookInput();
+  saveUserInput(userInput);
+  setCurrentCover(createCover(userInput));
+  updateDOMCover();
+  changeView(homeView);
+  event.preventDefault();
+}
+
 function viewHome() {
   showHomeBtnHideOthers(false);
-
   changeView(homeView);
 }
 
@@ -47,13 +57,11 @@ function createRandomCover() {
 
 function viewForm() {
   showHomeBtnHideOthers(true);
-
   changeView(formView);
 }
 
 function viewSavedCovers() {
   showHomeBtnHideOthers(true);
-
   changeView(savedView);
 }
 
@@ -72,7 +80,13 @@ function getRandomIndex(array) {
 }
 
 function saveCover(cover) {
-  savedCovers.push(cover)
+  savedCovers.push(cover);
+}
+
+function saveUserInput(newBook) {
+  [covers, titles, descriptors, descriptors].forEach((rawArray, i) => {
+    rawArray.push(newBook[i]);
+  })
 }
 
 function setCurrentCover(cover) {
@@ -92,6 +106,11 @@ function hideViews() {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function getNewBookInput() {
+  var formClasses = ['.user-cover', '.user-title', '.user-desc1', '.user-desc2'];
+  return formClasses.map(c => document.querySelector(c).value);
 }
 
 function show(element) {
