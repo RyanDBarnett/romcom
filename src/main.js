@@ -33,9 +33,7 @@ makeNewCoverBtn.addEventListener('click', viewForm);
 // Event Listener functions
 
 function viewHome() {
-  hide(homeBtn);
-  show(randomCoverBtn);
-  show(saveCoverBtn);
+  showHomeBtnHideOthers(false);
 
   changeView(homeView);
 }
@@ -47,17 +45,13 @@ function createRandomCover() {
 }
 
 function viewForm() {
-  hide(randomCoverBtn);
-  hide(saveCoverBtn);
-  show(homeBtn);
+  showHomeBtnHideOthers(true);
 
   changeView(formView);
 }
 
 function viewSavedCovers() {
-  hide(randomCoverBtn);
-  hide(saveCoverBtn);
-  show(homeBtn);
+  showHomeBtnHideOthers(true);
 
   changeView(savedView);
 }
@@ -101,6 +95,18 @@ function hide(element) {
 
 function show(element) {
   element.classList.remove('hidden');
+}
+
+function showHomeBtnHideOthers(showHome) {
+  if (showHome) {
+    hide(randomCoverBtn);
+    hide(saveCoverBtn);
+    show(homeBtn);
+  } else {
+    hide(homeBtn);
+    show(randomCoverBtn);
+    show(saveCoverBtn);
+  }
 }
 
 
