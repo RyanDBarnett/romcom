@@ -13,6 +13,7 @@ var randomCoverBtn = document.querySelector('.random-cover-button');
 var saveCoverBtn = document.querySelector('.save-cover-button');
 var savedCoversBtn = document.querySelector('.view-saved-button');
 var makeNewCoverBtn = document.querySelector('.make-new-button');
+var createNewBookBtn = document.querySelector('.create-new-book-button');
 
 // State variables
 
@@ -30,8 +31,18 @@ homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
+createNewBookBtn.addEventListener('click', createNewBook);
 
 // Event Listener functions
+
+function createNewBook(event) {
+  var userCover = document.querySelector('.user-cover').value;
+  var userTitle = document.querySelector('.user-title').value;
+  var userDescriptor1 = document.querySelector('.user-desc1').value;
+  var userDescriptor2 = document.querySelector('.user-desc2').value;
+  
+  event.preventDefault();
+}
 
 function viewHome() {
   showHomeBtnHideOthers(false);
