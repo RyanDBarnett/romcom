@@ -37,17 +37,15 @@ createNewBookBtn.addEventListener('click', createNewBook);
 
 function createNewBook(event) {
   var userInput = getNewBookInput();
-
   saveUserInput(userInput);
-
-  var newCover = createCover(userInput);
-
+  setCurrentCover(createCover(userInput));
+  updateDOMCover();
+  changeView(homeView);
   event.preventDefault();
 }
 
 function viewHome() {
   showHomeBtnHideOthers(false);
-
   changeView(homeView);
 }
 
@@ -59,13 +57,11 @@ function createRandomCover() {
 
 function viewForm() {
   showHomeBtnHideOthers(true);
-
   changeView(formView);
 }
 
 function viewSavedCovers() {
   showHomeBtnHideOthers(true);
-
   changeView(savedView);
 }
 
