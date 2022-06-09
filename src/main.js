@@ -21,7 +21,7 @@ var currentCover;
 
 // Initialization
 
-setCurrentCover(createCover());
+setCurrentCover(createCover(getRandomCoverData()));
 updateDOMCover();
 
 // Event listeners
@@ -30,50 +30,41 @@ homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
+
 // Event Listener functions
 
 function viewHome() {
-  homeBtn.classList.add('hidden');
-  formView.classList.add('hidden');
-  savedView.classList.add('hidden');
+  showHomeBtnHideOthers(false);
 
-  randomCoverBtn.classList.remove('hidden');
-  saveCoverBtn.classList.remove('hidden');
-  homeView.classList.remove('hidden');
+  changeView(homeView);
 }
 
 function createRandomCover() {
   saveCover(currentCover);
-  setCurrentCover(createCover());
+  setCurrentCover(createCover(getRandomCoverData()));
   updateDOMCover();
 }
 
 function viewForm() {
-  homeView.classList.add('hidden');
-  randomCoverBtn.classList.add('hidden');
-  saveCoverBtn.classList.add('hidden');
+  showHomeBtnHideOthers(true);
 
-  homeBtn.classList.remove('hidden');
-  formView.classList.remove('hidden');
+  changeView(formView);
 }
 
 function viewSavedCovers() {
-  randomCoverBtn.classList.add('hidden');
-  saveCoverBtn.classList.add('hidden');
-  homeView.classList.add('hidden');
+  showHomeBtnHideOthers(true);
 
-  savedView.classList.remove('hidden');
-  homeBtn.classList.remove('hidden');
+  changeView(savedView);
 }
 
 // Helper functions
 
-function createCover() {
-  var coverImgSrc = covers[getRandomIndex(covers)];
-  var title = titles[getRandomIndex(titles)];
-  var descriptor1 = descriptors[getRandomIndex(descriptors)];
-  var descriptor2 = descriptors[getRandomIndex(descriptors)];
-  return new Cover(coverImgSrc, title, descriptor1, descriptor2);
+function createCover(coverData) {
+  return new Cover(...coverData);
+}
+
+function getRandomCoverData() {
+  return [covers, titles, descriptors, descriptors].map(array => array[getRandomIndex(array)]);
 }
 
 function getRandomIndex(array) {
@@ -89,6 +80,35 @@ function setCurrentCover(cover) {
 }
 
 // DOM functions
+
+function changeView(viewToDisplay) {
+  hideViews();
+  show(viewToDisplay);
+}
+
+function hideViews() {
+  [homeView, formView, savedView].forEach(view => hide(view));
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function showHomeBtnHideOthers(showHome) {
+  if (showHome) {
+    hide(randomCoverBtn);
+    hide(saveCoverBtn);
+    show(homeBtn);
+  } else {
+    hide(homeBtn);
+    show(randomCoverBtn);
+    show(saveCoverBtn);
+  }
+}
 
 function updateDOMCover() {
   coverImage.src = currentCover.cover;
