@@ -110,6 +110,7 @@ function addMiniCoverToDOM() {
   var miniCover = document.createElement('div');
 
   miniCover.classList.add('mini-cover');
+  miniCover.dataset.key = currentCover.id;
   miniCover.innerHTML = `
     <img class="cover-image" src=${currentCover.cover}>
     <h2 class="cover-title">${currentCover.title}</h2>
