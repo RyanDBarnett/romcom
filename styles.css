@@ -91,6 +91,7 @@ body {
 
 .overlay {
   position: absolute;
+  left: 0;
   top: 0;
   filter: opacity(65%);
   mix-blend-mode: screen;
