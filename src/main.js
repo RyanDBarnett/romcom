@@ -48,7 +48,9 @@ function createRandomCover() {
 }
 
 function saveCurrentCover() {
-  savedCovers.push(currentCover);
+  if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover);
+  }
 }
 
 function viewSavedCovers() {
