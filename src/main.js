@@ -29,11 +29,39 @@ updateDOMCover();
 
 homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
+saveCoverBtn.addEventListener('click', saveCurrentCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
 createNewBookBtn.addEventListener('click', createNewBook);
 
 // Event Listener functions
+
+function viewHome() {
+  showHomeBtnHideOthers(false);
+  changeView(homeView);
+}
+
+function createRandomCover() {
+  setCurrentCover(createCover(getRandomCoverData()));
+  updateDOMCover();
+}
+
+function saveCurrentCover() {
+  if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover);
+    addMiniCoverToDOM();
+  }
+}
+
+function viewSavedCovers() {
+  showHomeBtnHideOthers(true);
+  changeView(savedView);
+}
+
+function viewForm() {
+  showHomeBtnHideOthers(true);
+  changeView(formView);
+}
 
 function createNewBook(event) {
   var userInput = getNewBookInput();
@@ -42,27 +70,6 @@ function createNewBook(event) {
   updateDOMCover();
   changeView(homeView);
   event.preventDefault();
-}
-
-function viewHome() {
-  showHomeBtnHideOthers(false);
-  changeView(homeView);
-}
-
-function createRandomCover() {
-  saveCover(currentCover);
-  setCurrentCover(createCover(getRandomCoverData()));
-  updateDOMCover();
-}
-
-function viewForm() {
-  showHomeBtnHideOthers(true);
-  changeView(formView);
-}
-
-function viewSavedCovers() {
-  showHomeBtnHideOthers(true);
-  changeView(savedView);
 }
 
 // Helper functions
@@ -79,10 +86,6 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function saveCover(cover) {
-  savedCovers.push(cover);
-}
-
 function saveUserInput(newBook) {
   [covers, titles, descriptors, descriptors].forEach((rawArray, i) => {
     rawArray.push(newBook[i]);
@@ -94,6 +97,22 @@ function setCurrentCover(cover) {
 }
 
 // DOM functions
+
+function addMiniCoverToDOM() {
+  var savedCoversSection = document.querySelector('.saved-covers-section');
+  var miniCover = document.createElement('div');
+
+  miniCover.classList.add('mini-cover');
+  miniCover.innerHTML = `
+    <img class="cover-image" src=${currentCover.cover}>
+    <h2 class="cover-title">${currentCover.title}</h2>
+    <h3 class="tagline">A tale of <span class="tagline-1">${currentCover.tagline1}</span> and <span class="tagline-2">${currentCover.tagline2}</span></h3>
+    <img class="price-tag" src="./assets/price.png">
+    <img class="overlay" src="./assets/overlay.png">
+  `
+
+  savedCoversSection.append(miniCover);
+}
 
 function changeView(viewToDisplay) {
   hideViews();
