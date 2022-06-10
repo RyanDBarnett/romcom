@@ -33,6 +33,7 @@ saveCoverBtn.addEventListener('click', saveCurrentCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
 createNewBookBtn.addEventListener('click', createNewBook);
+savedView.addEventListener('click', deleteSavedCover);
 
 // Event Listener functions
 
@@ -70,6 +71,12 @@ function createNewBook(event) {
   updateDOMCover();
   changeView(homeView);
   event.preventDefault();
+}
+
+function deleteSavedCover(e) {
+  if (event.target.parentNode.className === 'mini-cover') {
+    console.log('test')
+  }
 }
 
 // Helper functions
