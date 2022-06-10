@@ -29,20 +29,12 @@ updateDOMCover();
 
 homeBtn.addEventListener('click', viewHome);
 randomCoverBtn.addEventListener('click', createRandomCover);
+saveCoverBtn.addEventListener('click', saveCurrentCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
 createNewBookBtn.addEventListener('click', createNewBook);
 
 // Event Listener functions
-
-function createNewBook(event) {
-  var userInput = getNewBookInput();
-  saveUserInput(userInput);
-  setCurrentCover(createCover(userInput));
-  updateDOMCover();
-  changeView(homeView);
-  event.preventDefault();
-}
 
 function viewHome() {
   showHomeBtnHideOthers(false);
@@ -55,14 +47,27 @@ function createRandomCover() {
   updateDOMCover();
 }
 
-function viewForm() {
-  showHomeBtnHideOthers(true);
-  changeView(formView);
+function saveCurrentCover() {
+  savedCovers.push(currentCover);
 }
 
 function viewSavedCovers() {
   showHomeBtnHideOthers(true);
   changeView(savedView);
+}
+
+function viewForm() {
+  showHomeBtnHideOthers(true);
+  changeView(formView);
+}
+
+function createNewBook(event) {
+  var userInput = getNewBookInput();
+  saveUserInput(userInput);
+  setCurrentCover(createCover(userInput));
+  updateDOMCover();
+  changeView(homeView);
+  event.preventDefault();
 }
 
 // Helper functions
