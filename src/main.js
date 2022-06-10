@@ -33,7 +33,7 @@ saveCoverBtn.addEventListener('click', saveCurrentCover);
 savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
 createNewBookBtn.addEventListener('click', createNewBook);
-savedView.addEventListener('click', deleteSavedCover);
+savedView.addEventListener('dblclick', deleteSavedCover);
 
 // Event Listener functions
 
@@ -74,8 +74,10 @@ function createNewBook(event) {
 }
 
 function deleteSavedCover(e) {
-  if (event.target.parentNode.className === 'mini-cover') {
-    console.log('test')
+  var miniCover = event.target.parentNode;
+  if (miniCover.className === 'mini-cover') {
+    savedCovers = savedCovers.filter(cover => cover.id !== +miniCover.dataset.key);
+    removeFromDOM(miniCover);
   }
 }
 
@@ -138,6 +140,10 @@ function hide(element) {
 function getNewBookInput() {
   var formClasses = ['.user-cover', '.user-title', '.user-desc1', '.user-desc2'];
   return formClasses.map(c => document.querySelector(c).value);
+}
+
+function removeFromDOM(element) {
+  element.remove();
 }
 
 function show(element) {
