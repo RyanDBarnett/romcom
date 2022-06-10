@@ -42,7 +42,6 @@ function viewHome() {
 }
 
 function createRandomCover() {
-  saveCover(currentCover);
   setCurrentCover(createCover(getRandomCoverData()));
   updateDOMCover();
 }
@@ -50,6 +49,7 @@ function createRandomCover() {
 function saveCurrentCover() {
   if (!savedCovers.includes(currentCover)) {
     savedCovers.push(currentCover);
+    addMiniCoverToDOM();
   }
 }
 
@@ -86,10 +86,6 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function saveCover(cover) {
-  savedCovers.push(cover);
-}
-
 function saveUserInput(newBook) {
   [covers, titles, descriptors, descriptors].forEach((rawArray, i) => {
     rawArray.push(newBook[i]);
@@ -101,6 +97,22 @@ function setCurrentCover(cover) {
 }
 
 // DOM functions
+
+function addMiniCoverToDOM() {
+  var savedCoversSection = document.querySelector('.saved-covers-section');
+  var miniCover = document.createElement('div');
+
+  miniCover.classList.add('mini-cover');
+  miniCover.innerHTML = `
+    <img class="cover-image" src=${currentCover.cover}>
+    <h2 class="cover-title">${currentCover.title}</h2>
+    <h3 class="tagline">A tale of <span class="tagline-1">${currentCover.tagline1}</span> and <span class="tagline-2">${currentCover.tagline2}</span></h3>
+    <img class="price-tag" src="./assets/price.png">
+    <img class="overlay" src="./assets/overlay.png">
+  `
+
+  savedCoversSection.append(miniCover);
+}
 
 function changeView(viewToDisplay) {
   hideViews();
