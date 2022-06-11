@@ -1,3 +1,8 @@
+var bongoBeliever = new Audio("./assets/bongo-believer.mp3");
+var bongoDanceMonkey = new Audio("./assets/bongo-dance-monkey.mp3");
+var leftDragon = document.querySelector('.left-logo');
+var rightDragon = document.querySelector('.right-logo');
+
 // DOM elements variables
 
 var homeView = document.querySelector('.home-view');
@@ -34,6 +39,8 @@ savedCoversBtn.addEventListener('click', viewSavedCovers);
 makeNewCoverBtn.addEventListener('click', viewForm);
 createNewBookBtn.addEventListener('click', createNewBook);
 savedView.addEventListener('dblclick', deleteSavedCover);
+leftDragon.addEventListener('click', playEasterEgg);
+rightDragon.addEventListener('click', playOtherEgg);
 
 // Event Listener functions
 
@@ -79,6 +86,23 @@ function deleteSavedCover(e) {
     savedCovers = savedCovers.filter(cover => cover.id !== +miniCover.dataset.key);
     removeFromDOM(miniCover);
   }
+}
+
+function playEasterEgg() {
+  resetAudio();
+  bongoBeliever.play();
+}
+
+function playOtherEgg() {
+  resetAudio();
+  bongoDanceMonkey.play();
+}
+
+function resetAudio() {
+  bongoDanceMonkey.pause();
+  bongoDanceMonkey.currentTime = 0;
+  bongoBeliever.pause();
+  bongoBeliever.currentTime = 0;
 }
 
 // Helper functions
