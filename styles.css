@@ -7,7 +7,9 @@
 
 body {
   margin: 0;
-  background: ghostwhite;
+  background-image: url('./assets/watercolor-patterns-01.png');
+  background-repeat: repeat;
+  background-size: 250px 250px;
 }
 
 .hidden {
@@ -15,6 +17,14 @@ body {
 }
 
 /* ~~~~~~~~~~~~~~ CONTROLS ~~~~~~~~~~~~~~~~ */
+.logo {
+  height: 50px;
+}
+
+.left-logo {
+  transform: scaleX(-1);
+}
+
 .controls {
   background: #7e5496;
   display: flex;
@@ -135,10 +145,13 @@ body {
 
 /* ~~~~~~~~~~~~~ NEW COVER FORM ~~~~~~~~~~~~~~~ */
 form {
+  background: ghostwhite;
+  border: 5px solid mistyrose;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px;
+  padding: 4vh 0;
 }
 
 form > label,
