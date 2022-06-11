@@ -17,6 +17,14 @@ body {
 }
 
 /* ~~~~~~~~~~~~~~ CONTROLS ~~~~~~~~~~~~~~~~ */
+.logo {
+  height: 50px;
+}
+
+.left-logo {
+  transform: scaleX(-1);
+}
+
 .controls {
   background: #7e5496;
   display: flex;
