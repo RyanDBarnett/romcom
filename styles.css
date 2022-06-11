@@ -7,7 +7,9 @@
 
 body {
   margin: 0;
-  background: ghostwhite;
+  background-image: url('./assets/watercolor-patterns-01.png');
+  background-repeat: repeat;
+  background-size: 250px 250px;
 }
 
 .hidden {
@@ -135,6 +137,8 @@ body {
 
 /* ~~~~~~~~~~~~~ NEW COVER FORM ~~~~~~~~~~~~~~~ */
 form {
+  background: ghostwhite;
+  border: 5px solid mistyrose;
   display: flex;
   flex-direction: column;
   align-items: center;
